@@ -1,5 +1,5 @@
 {
-    "name": "wp-premium/gravityformsuserregistration",
+    "name": "wp-rankia/gravityforms-user-registration-addon",
     "type": "wordpress-plugin",
     "autoload": {
         "classmap": [
