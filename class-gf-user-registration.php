@@ -254,6 +254,10 @@ class GF_User_Registration extends GFFeedAddOn {
 
 	}
 
+  public function get_base_path( $full_path = '' ) {
+    return plugin_dir_path(__FILE__);
+  }
+
 	/**
 	 * Determines if the current screen is the widget editor
 	 *
@@ -2101,9 +2105,9 @@ class GF_User_Registration extends GFFeedAddOn {
 
 			/* Display links. */
 			if ( ! empty( $args['logged_in_links'] ) && is_array( $args['logged_in_links'] ) ) {
-				
+
 				foreach ( $args['logged_in_links'] as $link ) {
-					
+
 					$link['url']  = str_replace( '{logout_url}', esc_attr( $logout_url ), $link['url'] );
 					$link['url']  = GFCommon::replace_variables( $link['url'], array(), array(), false, false, false, 'text' );
 					$html        .= '<a href="' . esc_attr( $link['url'] ) . '" title="' . esc_attr( $link['text'] ) . '">' . esc_html( $link['text'] ) . '</a><br />';
@@ -4219,7 +4223,7 @@ class GF_User_Registration extends GFFeedAddOn {
 
 				/**
 				 * Allows the expiration period for the pending activation to be overridden.
-				 * 
+				 *
 				 * @since 4.5
 				 *
 				 * @param int $expiration_time Expiration time in seconds. Defaults to 172800 (2 days).
