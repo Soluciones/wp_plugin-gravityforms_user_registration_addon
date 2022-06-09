@@ -6,11 +6,13 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 add_action( 'widgets_init', 'gf_userregistration_register_widget' );
 
-/**
- * Register Gravity Forms Login widget.
- */
-function gf_userregistration_register_widget() {
-	register_widget( 'GFLoginWidget' );
+if ( ! function_exists('gf_userregistration_register_widget') ) {
+	/**
+	 * Register Gravity Forms Login widget.
+	 */
+	function gf_userregistration_register_widget() {
+		register_widget( 'GFLoginWidget' );
+	}
 }
 
 if ( ! class_exists( 'GFLoginWidget' ) ) {
