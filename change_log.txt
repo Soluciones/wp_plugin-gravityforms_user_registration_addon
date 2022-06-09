@@ -1,3 +1,35 @@
+## 5.0 | 2022-02-17
+- Fixed an issue where an additional checkbox field type appears in the standard fields list.
+
+
+## 4.9 | 2021-10-21
+- Fixed a typo in the text domain.
+- Fixed an issue that prevented the login widget from saving in the block-based widget editor.
+- Fixed an issue that prevented the sorting of files in the multi-file upload field.
+- Fixed an issue where Multi-File Upload fields don't correctly map to user meta values.
+- Fixed an issue where the login form was not styled correctly when using Gravity Forms 2.5.
+- Fixed an issue where the {set_password_url} merge tag can output an invalid URL on multisite.
+- Fixed an issue where user-submitted data doesn't get saved to the profiles of users activated via BuddyPress or BuddyBoss.
+
+
+### 4.8 | 2021-04-28
+- Fixed an issue with untranslated strings on the activation page.
+- Fixed an issue where the values of BuddyPress fields that are mapped to form fields are not saved on user activation.
+- Fixed a fatal error which can occur during user activation.
+- Fixed an issue where the add-on icon is missing on the form settings pages in Gravity Forms 2.5.
+
+
+### 4.7 | 2021-01-28
+- Fixed user permissions so users with the promote_users capability can now view the Pending Activations screen.
+- Fixed an issue where script tags were being output above document head element.
+- Fixed styling issues on the Pending Activations screen in Gravity Forms 2.5.
+- Fixed an issue where both success and error message where displayed when activating a user from the Pending Activations screen.
+- Fixed a typo in the tooltip for the Password setting on the feed configuration page.
+- Fixed an issue where MySQL throws an error on Entry Detail and Pending Activations screens.
+- Fixed an issue where the login form does not display non-standard authentication errors.
+- Fixed a fatal error which occurs on form population if the Consent field is mapped on the Update feed and the entry which last updated or created the user has been deleted.
+
+
 ### 4.6 | 2020-09-30
 - Added translations for Japanese.
 - Added support for Gravity Forms 2.5.
@@ -481,7 +513,7 @@
 
             return $message;
         }
-       
+
 
 
 ### 1.0.beta5.1

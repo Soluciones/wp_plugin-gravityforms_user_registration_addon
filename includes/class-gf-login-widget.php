@@ -6,13 +6,11 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 add_action( 'widgets_init', 'gf_userregistration_register_widget' );
 
-if ( ! function_exists('gf_userregistration_register_widget') ) {
-  /**
-   * Register Gravity Forms Login widget.
-   */
-  function gf_userregistration_register_widget() {
-    register_widget( 'GFLoginWidget' );
-  }
+/**
+ * Register Gravity Forms Login widget.
+ */
+function gf_userregistration_register_widget() {
+	register_widget( 'GFLoginWidget' );
 }
 
 if ( ! class_exists( 'GFLoginWidget' ) ) {
@@ -65,6 +63,21 @@ if ( ! class_exists( 'GFLoginWidget' ) ) {
 			// Open widget.
 			$widget = $before_widget;
 
+			$defaults = array(
+				'title'               => '',
+				'logged_in_title'     => '',
+				'tabindex'            => 1,
+				'logged_in_avatar'    => '',
+				'logged_in_links'     => '',
+				'logged_in_message'   => '',
+				'logged_out_links'    => '',
+				'login_redirect'      => '',
+				'logout_redirect'     => '',
+				'login_redirect_url'  => '',
+				'logout_redirect_url' => '',
+			);
+			$instance = wp_parse_args( $instance, $defaults );
+
 			// Get the widget title.
 			$title = is_user_logged_in() ? $instance['logged_in_title'] : $instance['title'];
 			$title = GFCommon::replace_variables( $title, array(), array() );
@@ -116,6 +129,16 @@ if ( ! class_exists( 'GFLoginWidget' ) ) {
 		 */
 		public function update( $new_instance, $old_instance ) {
 
+			$logged_in_links =  rgar( $new_instance, 'logged_in_links' );
+			if ( ! is_array( $logged_in_links) ) {
+				$logged_in_links = json_decode( $logged_in_links, true );
+			}
+
+			$logged_out_links =  rgar( $new_instance, 'logged_out_links' );
+			if ( ! is_array( $logged_out_links) ) {
+				$logged_out_links = json_decode( $logged_out_links, true );
+			}
+
 			// Prepare instance.
 			$instance                           = $old_instance;
 			$instance['active_view']            = rgar( $new_instance, 'active_view' );
@@ -125,8 +148,8 @@ if ( ! class_exists( 'GFLoginWidget' ) ) {
 			$instance['logged_in_title']        = rgar( $new_instance, 'logged_in_title' );
 			$instance['logged_in_avatar']       = rgar( $new_instance, 'logged_in_avatar' );
 			$instance['logged_in_message']      = rgar( $new_instance, 'logged_in_message' );
-			$instance['logged_in_links']        = json_decode( rgar( $new_instance, 'logged_in_links' ), true );
-			$instance['logged_out_links']       = json_decode( rgar( $new_instance, 'logged_out_links' ), true );
+			$instance['logged_in_links']        = $logged_in_links;
+			$instance['logged_out_links']       = $logged_out_links;
 			$instance['logout_redirect_url']    = rgar( $new_instance, 'logout_redirect_url' );
 
 			// Remove empty logged in links.
