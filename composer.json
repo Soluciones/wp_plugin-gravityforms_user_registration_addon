@@ -1,6 +1,6 @@
 {
     "name": "wp-rankia/gravityforms-user-registration-addon",
-    "type": "wordpress-plugin",
+    "type": "wordpress-muplugin",
     "autoload": {
         "classmap": [
             "."
